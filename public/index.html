@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARIA — Your AI Employee</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-content">
+        <div class="aria-identity">
+          <div class="aria-avatar">
+            <div class="avatar-ring"></div>
+            <span class="avatar-icon">A</span>
+          </div>
+          <div class="aria-info">
+            <h1 class="aria-name">ARIA</h1>
+            <p class="aria-subtitle">Advanced Reasoning &amp; Intelligence Assistant</p>
+          </div>
+        </div>
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          <span>Online &amp; Ready</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="chat-container">
+      <div class="messages" id="messages">
+        <div class="welcome-screen" id="welcome">
+          <div class="welcome-icon">
+            <div class="pulse-ring"></div>
+            <span>A</span>
+          </div>
+          <h2>How can I help you today?</h2>
+          <p>I'm ARIA — your AI employee. I have mastered every domain of knowledge and I always know exactly what to do. Ask me anything.</p>
+          <div class="suggestion-grid">
+            <button class="suggestion-btn" data-prompt="Write a Python function that sorts a list of dictionaries by multiple keys efficiently.">
+              <span class="suggestion-icon">⌨</span>
+              <span>Write code</span>
+            </button>
+            <button class="suggestion-btn" data-prompt="What's the best strategy to grow a SaaS startup from 0 to $1M ARR?">
+              <span class="suggestion-icon">📈</span>
+              <span>Business strategy</span>
+            </button>
+            <button class="suggestion-btn" data-prompt="Explain quantum entanglement in simple terms and its practical applications.">
+              <span class="suggestion-icon">🔬</span>
+              <span>Explain science</span>
+            </button>
+            <button class="suggestion-btn" data-prompt="Help me debug this: my React component re-renders infinitely. What are the likely causes?">
+              <span class="suggestion-icon">🔧</span>
+              <span>Debug a problem</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="input-area">
+      <div class="input-container">
+        <textarea
+          id="userInput"
+          class="message-input"
+          placeholder="Ask ARIA anything..."
+          rows="1"
+          autofocus
+        ></textarea>
+        <button id="sendBtn" class="send-btn" disabled>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="disclaimer">ARIA uses Claude AI · Always verify critical decisions</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
