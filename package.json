@@ -1,7 +1,7 @@
 {
   "name": "aria-ai-employee",
-  "version": "1.0.0",
-  "description": "ARIA - Advanced Reasoning & Intelligence Assistant",
+  "version": "2.0.0",
+  "description": "ARIA - AI Employee workspace with pluggable local & cloud models",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -10,6 +10,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "openai": "^4.77.0"
   }
 }

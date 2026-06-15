@@ -1,0 +1,35 @@
+[
+  {
+    "id": "example-claude",
+    "label": "ARIA (Claude Opus 4.8)",
+    "type": "anthropic",
+    "baseURL": "",
+    "apiKey": "sk-ant-...",
+    "model": "claude-opus-4-8",
+    "system": "",
+    "thinking": true,
+    "maxTokens": 4096
+  },
+  {
+    "id": "example-ollama",
+    "label": "Llama 3.1 (local / Ollama)",
+    "type": "openai",
+    "baseURL": "http://localhost:11434/v1",
+    "apiKey": "",
+    "model": "llama3.1",
+    "system": "",
+    "thinking": false,
+    "maxTokens": 4096
+  },
+  {
+    "id": "example-lmstudio",
+    "label": "Mistral (local / LM Studio)",
+    "type": "openai",
+    "baseURL": "http://localhost:1234/v1",
+    "apiKey": "",
+    "model": "mistral-7b-instruct",
+    "system": "",
+    "thinking": false,
+    "maxTokens": 4096
+  }
+]

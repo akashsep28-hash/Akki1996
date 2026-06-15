@@ -3,81 +3,167 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ARIA — Your AI Employee</title>
+  <title>ARIA — AI Employee Workspace</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
   <div class="app">
-    <header class="header">
-      <div class="header-content">
-        <div class="aria-identity">
-          <div class="aria-avatar">
-            <div class="avatar-ring"></div>
-            <span class="avatar-icon">A</span>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <div class="brand">
+          <div class="brand-mark">A</div>
+          <div class="brand-text">
+            <span class="brand-name">ARIA</span>
+            <span class="brand-sub">AI Employee</span>
           </div>
-          <div class="aria-info">
-            <h1 class="aria-name">ARIA</h1>
-            <p class="aria-subtitle">Advanced Reasoning &amp; Intelligence Assistant</p>
-          </div>
+        </div>
+        <button class="icon-btn" id="newChatBtn" title="New chat">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <button class="new-chat-wide" id="newChatWide">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        New chat
+      </button>
+
+      <div class="chat-list" id="chatList"></div>
+
+      <div class="sidebar-foot">
+        <button class="settings-btn" id="settingsBtn">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="2"/></svg>
+          Manage models
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" title="Menu">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="model-picker">
+          <label for="modelSelect" class="model-picker-label">Model</label>
+          <select id="modelSelect" class="model-select"></select>
         </div>
         <div class="status-badge">
           <span class="status-dot"></span>
-          <span>Online &amp; Ready</span>
+          <span id="statusText">Ready</span>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <main class="chat-container">
-      <div class="messages" id="messages">
-        <div class="welcome-screen" id="welcome">
-          <div class="welcome-icon">
-            <div class="pulse-ring"></div>
-            <span>A</span>
-          </div>
-          <h2>How can I help you today?</h2>
-          <p>I'm ARIA — your AI employee. I have mastered every domain of knowledge and I always know exactly what to do. Ask me anything.</p>
-          <div class="suggestion-grid">
-            <button class="suggestion-btn" data-prompt="Write a Python function that sorts a list of dictionaries by multiple keys efficiently.">
-              <span class="suggestion-icon">⌨</span>
-              <span>Write code</span>
-            </button>
-            <button class="suggestion-btn" data-prompt="What's the best strategy to grow a SaaS startup from 0 to $1M ARR?">
-              <span class="suggestion-icon">📈</span>
-              <span>Business strategy</span>
-            </button>
-            <button class="suggestion-btn" data-prompt="Explain quantum entanglement in simple terms and its practical applications.">
-              <span class="suggestion-icon">🔬</span>
-              <span>Explain science</span>
-            </button>
-            <button class="suggestion-btn" data-prompt="Help me debug this: my React component re-renders infinitely. What are the likely causes?">
-              <span class="suggestion-icon">🔧</span>
-              <span>Debug a problem</span>
-            </button>
+      <main class="chat-container" id="chatContainer">
+        <div class="messages" id="messages">
+          <div class="welcome-screen" id="welcome">
+            <div class="welcome-icon"><div class="pulse-ring"></div><span>A</span></div>
+            <h2>How can I help you today?</h2>
+            <p id="welcomeSub">I'm ARIA — your AI employee. Pick a model and ask me anything.</p>
+            <div class="suggestion-grid">
+              <button class="suggestion-btn" data-prompt="Write a Python function that sorts a list of dictionaries by multiple keys efficiently."><span class="suggestion-icon">⌨</span><span>Write code</span></button>
+              <button class="suggestion-btn" data-prompt="What's the best strategy to grow a SaaS startup from 0 to $1M ARR?"><span class="suggestion-icon">📈</span><span>Business strategy</span></button>
+              <button class="suggestion-btn" data-prompt="Explain quantum entanglement in simple terms and its practical applications."><span class="suggestion-icon">🔬</span><span>Explain science</span></button>
+              <button class="suggestion-btn" data-prompt="My React component re-renders infinitely. What are the likely causes and fixes?"><span class="suggestion-icon">🔧</span><span>Debug a problem</span></button>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
 
-    <footer class="input-area">
-      <div class="input-container">
-        <textarea
-          id="userInput"
-          class="message-input"
-          placeholder="Ask ARIA anything..."
-          rows="1"
-          autofocus
-        ></textarea>
-        <button id="sendBtn" class="send-btn" disabled>
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+      <footer class="input-area">
+        <div class="input-container">
+          <textarea id="userInput" class="message-input" placeholder="Ask ARIA anything..." rows="1" autofocus></textarea>
+          <button id="sendBtn" class="send-btn" disabled>
+            <svg viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <p class="disclaimer">Responses come from your selected model · Always verify critical decisions</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Settings / Model manager modal -->
+  <div class="modal-overlay" id="settingsModal" hidden>
+    <div class="modal">
+      <div class="modal-head">
+        <h2>Manage models</h2>
+        <button class="icon-btn" id="closeSettings" title="Close">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
       </div>
-      <p class="disclaimer">ARIA uses Claude AI · Always verify critical decisions</p>
-    </footer>
+
+      <div class="modal-body">
+        <div class="provider-list" id="providerList"></div>
+
+        <div class="provider-form">
+          <h3 id="formTitle">Add a model</h3>
+          <input type="hidden" id="editId" />
+
+          <div class="form-row">
+            <label>Type</label>
+            <div class="seg-control">
+              <button type="button" class="seg active" data-type="anthropic">Claude (Anthropic)</button>
+              <button type="button" class="seg" data-type="openai">Local / OpenAI-compatible</button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="fLabel">Display name</label>
+            <input id="fLabel" type="text" placeholder="e.g. My Llama 3.1 (local)" />
+          </div>
+
+          <div class="form-row" id="baseUrlRow">
+            <label for="fBaseUrl">Base URL <span class="hint" id="baseUrlHint">(local server endpoint)</span></label>
+            <input id="fBaseUrl" type="text" placeholder="http://localhost:11434/v1" />
+            <div class="quick-urls">
+              <button type="button" class="chip" data-url="http://localhost:11434/v1">Ollama</button>
+              <button type="button" class="chip" data-url="http://localhost:1234/v1">LM Studio</button>
+              <button type="button" class="chip" data-url="https://api.openai.com/v1">OpenAI</button>
+              <button type="button" class="chip" data-url="https://openrouter.ai/api/v1">OpenRouter</button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="fKey">API key <span class="hint" id="keyHint">(leave blank for local servers)</span></label>
+            <input id="fKey" type="password" placeholder="sk-... or leave blank" autocomplete="off" />
+          </div>
+
+          <div class="form-row">
+            <label for="fModel">Model id</label>
+            <div class="model-id-row">
+              <input id="fModel" type="text" placeholder="claude-opus-4-8 / llama3.1 / gpt-4o" />
+              <button type="button" class="btn-ghost" id="fetchModelsBtn">Fetch available</button>
+            </div>
+            <select id="fModelList" class="model-discover" hidden></select>
+          </div>
+
+          <div class="form-row two-col">
+            <div>
+              <label for="fMaxTokens">Max tokens</label>
+              <input id="fMaxTokens" type="number" value="4096" min="256" />
+            </div>
+            <div class="thinking-toggle" id="thinkingRow">
+              <label for="fThinking">Adaptive thinking</label>
+              <label class="switch"><input id="fThinking" type="checkbox" checked /><span class="slider"></span></label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="fSystem">System prompt <span class="hint">(optional — defaults to the ARIA persona)</span></label>
+            <textarea id="fSystem" rows="3" placeholder="Leave blank to use the built-in ARIA persona"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <span class="form-msg" id="formMsg"></span>
+            <button type="button" class="btn-secondary" id="testBtn">Test connection</button>
+            <button type="button" class="btn-secondary" id="cancelEditBtn" hidden>Cancel</button>
+            <button type="button" class="btn-primary" id="saveBtn">Save model</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="app.js"></script>
